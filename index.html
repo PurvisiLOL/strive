@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strive - Internal</title>
+  <link rel="icon" type="image/x-icon" href="./strive.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at center, #0a0f1f, #0b162a, #081426, #06101f);
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+      transition: background-position 0.1s;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #6ebaff;
+    }
+
+    .nav a {
+      color: #9bb5d9;
+      text-decoration: none;
+      font-size: 16px;
+      margin-left: 15px;
+      transition: opacity 0.3s;
+    }
+
+    .nav a:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 100px;
+        text-align: left;
+      }
+    }
+
+    .info {
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .info {
+        max-width: 45%;
+      }
+    }
+
+    .info h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #6ebaff, #284b78);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .info p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      color: #a9b9d2;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    @media (min-width: 768px) {
+      .buttons {
+        flex-direction: row;
+        gap: 20px;
+      }
+    }
+
+    .button {
+      text-decoration: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+      font-weight: bold;
+    }
+
+    .discord {
+      background: linear-gradient(90deg, #3d4aff, white, #3d4aff);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
+      color: white;
+      border: none;
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.5);
+      transition: transform 0.2s ease;
+    }
+
+    .discord:hover {
+      transform: scale(1.05);
+    }
+
+    .download {
+      background: transparent;
+      color: white;
+      border: 2px solid #6ebaff;
+    }
+
+    .download:hover {
+      background: #6ebaff;
+      color: black;
+    }
+
+    .mockup {
+      position: relative;
+      perspective: 1000px;
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mockup img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+      will-change: transform;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(94, 158, 241, 0.3);
+    }
+
+    .mockup:hover img {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 10px 25px rgba(94, 158, 241, 0.4);
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="logo">STRIVE</div>
+    <div>
+      <a href="#">HOME</a>
+      <a href="#">DISCORD</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="info">
+      <h1>Internal</h1>
+      <p>The best scripting utility for the cheapest prices! More information is in the discord server.</p>
+      <div class="buttons">
+        <a href="#" class="button discord">Discord</a>
+        <a href="#" class="button download">Download ↓</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <img src="./image.png" alt="Mockup">
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("mousemove", (event) => {
+      const { clientX, clientY } = event;
+      const xPercent = (clientX / window.innerWidth) * 100;
+      const yPercent = (clientY / window.innerHeight) * 100;
+
+      document.body.style.background = `radial-gradient(circle at ${xPercent}% ${yPercent}%, #1a2f4f, #10203f)`;
+    });
+
+    const mockup = document.querySelector('.mockup');
+    const mockupImg = mockup.querySelector('img');
+
+    mockup.addEventListener('mousemove', (event) => {
+    const rect = mockup.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+
+    mockupImg.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    mockup.addEventListener('mouseleave', () => {
+    mockupImg.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+
+  </script>
+</body>
+</html>
